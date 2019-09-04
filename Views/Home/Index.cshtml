@@ -1,0 +1,94 @@
+﻿<div class="jumbotron my-2 shadow p-3 mb-5 bg-white rounded">
+    <h1 class="display-4">Northwind</h1>
+    <p class="lead">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
+    <hr class="my-4">
+    <p>For exceptional international quisuine, look no further.</p>
+    <a class="btn btn-outline-primary btn-lg" href="#" role="button"><i class="fas fa-shopping-cart"></i> Order Now</a>
+</div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">North Winds Testing Module</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <button type="button" class="btn btn-info">Learn More</button>
+    </div>
+</div>
+
+<div class="container-fluid shadow p-3 mb-5 bg-white rounded p-4">
+    <p>This is the container fluid box</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 shadow p-3 mb-5 bg-white rounded p-4">
+            <h3>Create a Bootstrap Page</h3>
+            <p>
+                This page will teach you how to create something in Bootstrap.
+            </p>
+            <button type="button" class="btn btn-info">Learn More</button>
+        </div>
+        <div class="col-md-4 shadow p-3 mb-5 bg-white rounded">
+            <h3>Create another page(2)</h3>
+            <p>Here is another page you can make</p>
+            <button type="button" class="btn btn-info">Learn More</button>
+        </div>
+        <div class="col-md-4 shadow p-3 mb-5 bg-white rounded">
+            <h3>Here is a third page you can go to</h3>
+            <p>More information here</p>
+            <button type="button" class="btn btn-info" id="myBtn">Learn More</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" />
+            </div>
+
+            <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input type="text" class="form-control" id="birthday" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <img src="~/balloons/blue_green.png" id="bgBallon" />
+</div>
+
+
+<div class="toast">
+    <div class="toast-header">
+        <button type="button" data-dismiss="toast">x</button>
+        What what?
+    </div>
+    <div class="toast-body">
+        Hello World!
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            var toastAudio = new Audio('/media/toast.wav');
+            toastAudio.currentTime = 0;
+            toastAudio.play();
+
+            $('.toast').toast({ autohide: false }).toast('show');
+
+            $(document).on('keyup', function () {
+                if (e.key === 'Escape') {
+                $('.toast').toast('hide');
+                }
+            });
+
+            $('#birthday').datepicker();    
+            $('#bgBallon').draggable();
+        });
+    </script>
+}
