@@ -4,6 +4,20 @@
     <hr class="my-4">
     <p>For exceptional international quisuine, look no further.</p>
     <a class="btn btn-outline-primary btn-lg" href="#" role="button"><i class="fas fa-shopping-cart"></i> Order Now</a>
+
+    <!--Homework for Class Two, create a Toast for a product and a discount total-->
+    <div>
+        <div class="toast" style="position: absolute; top: 20em; right: 20em;">
+            <div class="toast-header">
+                <!--Create a button that closes the Toast when clicked-->
+                <button type="button" data-dismiss="toast">x</button>
+                <strong class="mr-auto"><i class="fas fa-tags"></i>Product: Soda</strong>
+</div>
+            <div class="toast-body">
+                Discount Code: Soda2019
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="jumbotron jumbotron-fluid">
@@ -40,29 +54,63 @@
     </div>
 </div>
 
+<!--Class Three activity-->
+<div class="container">
+    <h1 class="animated rubberBand">Happy Birthday!</h1>
+</div>
+
+<!--Class Three-->
 <div class="container">
     <div class="row">
         <div class="col-md-6">
+
+            <!--Name Entry-->
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" />
             </div>
 
+            <!--Birthday Entry-->
             <div class="form-group">
                 <label for="birthday">Birthday</label>
                 <input type="text" class="form-control" id="birthday" />
             </div>
+
+            <!--Card-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Select your Balloons!</h5>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="orangeBalloon" />
+                        <label class="form-check-label">Orange Balloons</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="pinkBalloon" />
+                        <label class="form-check-label">Pink Balloons</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="yellowBalloon" />
+                        <label class="form-check-label">Yellow Ballons</label>
+                    </div>
+                </div>
+            </div>
+            <!--End of Card-->
+            <button type="button" class="btn btn-outline-primary">Submit</button>
         </div>
     </div>
 </div>
 
+<!--Class Three, Have balloons for the Birthday Card-->
 <div class="col-md-6">
-    <img src="~/balloons/blue_green.png" id="bgBallon" />
+    <img src="~/balloons/orange.png" id="orangeBalloonImg" />
+    <img src="~/balloons/pink.png" id="pinkBalloonImg" />
+    <img src="~/balloons/yellow.png" id="yellowBalloonImg" />
 </div>
 
-
+<!--Class One, make a Toast (FRENCH TOAST dodododododo)-->
 <div class="toast">
     <div class="toast-header">
+        <!--Create a button that closes the Toast when clicked-->
         <button type="button" data-dismiss="toast">x</button>
         What what?
     </div>
@@ -72,23 +120,45 @@
 </div>
 
 @section Scripts {
+    <!--Script Link for the external js Page-->
+    <script src="~/js/client.js"></script>
     <script>
+
+        //Class One-for the audio file to play
         $(function () {
 
             var toastAudio = new Audio('/media/toast.wav');
             toastAudio.currentTime = 0;
             toastAudio.play();
 
+            //Class Two-->To close the Toast
             $('.toast').toast({ autohide: false }).toast('show');
 
             $(document).on('keyup', function () {
                 if (e.key === 'Escape') {
-                $('.toast').toast('hide');
+                    $('.toast').toast('hide');
                 }
             });
 
-            $('#birthday').datepicker();    
+            //Class One-JS for the birthday datepicker
+            $('#birthday').datepicker();
+
+            //Class One-to drag a balloon around on the homescreen
             $('#bgBallon').draggable();
         });
+
+        //Class Three Homework
+        //array of different animations for the Happy Birthday
+        //lets of random numbers
+        //choose the random number
+        //animate the balloons depending the random number
+
+        //write JS for submit button click when there are no balloons checked
+
+        //hoovering mouse over checkbox label should change the color of the h1 element
+
+        //
     </script>
 }
+
+<!--Hold down the ctrl+F5 to clear the cache-->

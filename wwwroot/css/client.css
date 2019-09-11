@@ -1,3 +1,17 @@
 ﻿body {
     font-family: 'Fjalla One', sans-serif;
 }
+
+h1 {
+    font-family: 'Londrina Shadow';
+    color: mediumslateblue;
+    font-size: 3.5em;
+}
+
+h1.animated {
+    display: inline-block;
+}
+
+.jumbtron {
+    margin-bottom: 0;
+}
