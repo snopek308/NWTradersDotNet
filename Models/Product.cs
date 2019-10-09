@@ -3,6 +3,7 @@ namespace Northwind.Models
 {
     public class Product
     {
+        //ERD from Product
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }

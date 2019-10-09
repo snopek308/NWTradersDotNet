@@ -14,6 +14,14 @@ namespace Northwind.Models
         // create IQueryable for Categories & Products
         public IQueryable<Category> Categories => context.Categories;
         public IQueryable<Product> Products => context.Products;
+        public IQueryable<Discount> Discounts => context.Discounts;
+        public IQueryable<Contact> Contact => context.Contact;
 
+        //adding the form to the database
+        public void AddContact(Contact contact)
+        {
+            context.Contact.Add(contact);
+            context.SaveChanges();
+        }
     }
 }

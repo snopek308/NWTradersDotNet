@@ -7,5 +7,11 @@ namespace Northwind.Models
     {
         IQueryable<Category> Categories { get; }
         IQueryable<Product> Products { get; }
+        IQueryable<Discount> Discounts { get; }
+        IQueryable<Contact> Contact { get; }
+
+
+        //
+        void AddContact(Contact contact);
     }
 }

@@ -9,15 +9,18 @@ namespace Northwind.Controllers
 {
     public class ProductController : Controller
     {
+
         // this controller depends on the NorthwindRepository
         //this is his _repository
         private INorthwindRepository banana;
+
 
         //constructor, creating a new product controller and when they do, we make a new repository
         public ProductController(INorthwindRepository repository)
         {
             banana = repository;
         }
+
 
         //controller method defined in the controller interface
         //the action result is going to happen whenever you call categories, showing you all the categories in the repo we made
@@ -27,6 +30,9 @@ namespace Northwind.Controllers
             results = banana.Categories.OrderBy(c => c.CategoryName);
             return View(results);   
         }
+
+
+
 
         //=> View(banana.Categories); <--this was above before like this;
         //public IActionResult Category()=> View(banana.Categories);
@@ -45,7 +51,6 @@ namespace Northwind.Controllers
             }
             return View(products);
         }
-
 
         //public IActionResult Id(int id)
         //{
