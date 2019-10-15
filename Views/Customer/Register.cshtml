@@ -1,0 +1,59 @@
+﻿<!--Need to have these to connect to the models-->
+@using Northwind.Models
+@model Customer
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register your Customer information here</h1>
+
+<!--Using the post to post the form
+    1)Where are we are going to post
+    method="post"
+    asp-action submits the form
+    2)Add a button-->
+<form method="post" asp-action="Register">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="CompanyName">Company Name</label>
+            <input asp-for="CompanyName" class="form-control" placeholder="Company Name" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" class="form-control" placeholder="Address" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label asp-for="City">City</label>
+            <input asp-for="City" class="form-control" placeholder="City" />
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="Region">Region</label>
+            <input asp-for="Region" class="form-control" placeholder="Region" />
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="PostalCode">Postal Code</label>
+            <input asp-for="PostalCode" class="form-control" placeholder="Postal Code" />
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="Country">Country</label>
+            <input asp-for="Country" class="form-control" placeholder="Country" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Phone">Phone Number</label>
+            <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Fax">Fax</label>
+            <input asp-for="Fax" class="form-control" placeholder="Fax" />
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-dark">Register</button>
+
+</form>
+
