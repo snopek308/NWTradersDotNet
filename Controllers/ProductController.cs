@@ -52,6 +52,13 @@ namespace Northwind.Controllers
             return View(products);
         }
 
+        public ActionResult CurrentDiscounts()
+        {
+            var results = banana.Discounts
+            .Where(d => d.StartTime.Date < DateTime.Now && d.EndTime > DateTime.Now);
+            return View(results);
+        }
+
         //public IActionResult Id(int id)
         //{
         //    //returns a specific ID

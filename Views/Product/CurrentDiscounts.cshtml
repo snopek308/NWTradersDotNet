@@ -1,0 +1,29 @@
+﻿@using Northwind.Models
+@model IEnumerable<Discount>
+@{
+    ViewData["Title"] = "CurrentDiscounts";
+}
+
+<h1>Current Discounts</h1>
+
+<div class="list-group">
+    @foreach (Discount d in Model)
+    {
+        <div class="list-group-item">
+            @d.Title
+            <br>
+            @d.Description
+            <br>
+            Discount expires: @d.EndTime.ToString("MM/dd/yyyy")
+            <br>
+            <a href="#" class="code" data-code="@d.Code" data-product="@d.Title"><i class="far fa-hand-point-right"></i> Discount Code</a>
+        </div>
+    }
+
+    @section scripts
+    {
+        <script src="/js/client.js"></script>
+    }
+
+
+

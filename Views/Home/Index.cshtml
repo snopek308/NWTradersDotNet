@@ -1,43 +1,43 @@
 ﻿@using Northwind.Models
-@model  IEnumerable<Discount>
+@model IEnumerable<Discount>
 
-    <div class="jumbotron my-2 shadow p-3 mb-5 bg-white rounded">
-        <h1 class="display-4">Northwind</h1>
-        <p class="lead">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
-        <hr class="my-4">
-        <p>For exceptional international quisuine, look no further.</p>
-        <a class="btn btn-outline-primary btn-lg" href="#" role="button"><i class="fas fa-shopping-cart"></i> Order Now</a>
+<div class="jumbotron my-2 shadow p-3 mb-5 bg-white rounded">
+    <h1 class="display-4">Northwind</h1>
+    <p class="lead">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
+    <hr class="my-4">
+    <p>For exceptional international quisuine, look no further.</p>
+    <a class="btn btn-outline-primary btn-lg" href="#" role="button"><i class="fas fa-shopping-cart"></i> Order Now</a>
 
-        <!--Homework for Class Seven, Display Discounts-->
-        <div class="row">
-            @foreach (Discount d in Model)
+    <!--Homework for Class Seven, Display Discounts-->
+    <div class="row">
+        @foreach (Discount d in Model)
             {
-                <div class="col-md m-3 p-3 discounts">
-                    <h3>@d.Title</h3>
-                    <div class="mb-4">
-                        @d.Description
-                    </div>
-                    <i>Discount expires: @d.EndTime.ToString("MM/dd/yyyy")</i><br />
-                    <a href="#" class="code" data-code="@d.Code" data-product="@d.Title"><i class="far fa-hand-point-right"></i> Discount Code</a>
-                </div>
-            }
+        <div class="col-md m-3 p-3 discounts">
+            <h3>@d.Title</h3>
+            <div class="mb-4">
+                @d.Description
+            </div>
+            <i>Discount expires: @d.EndTime.ToString("MM/dd/yyyy")</i><br />
+            <a href="#" class="code" data-code="@d.Code" data-product="@d.Title"><i class="far fa-hand-point-right"></i> Discount Code</a>
         </div>
+            }
+    </div>
 
 
-        <!--Homework for Class Two, create a Toast for a product and a discount total-->
-        <div>
-            <div class="toast" style="position: absolute; top: 100px ; right: 20%;">
-                <div class="toast-header">
-                    <!--Create a button that closes the Toast when clicked-->
-                    <button type="button" data-dismiss="toast">x</button>
-                    <strong class="mr-auto"><i class="fas fa-tags"></i>Product: Soda</strong>
-                </div>
-                <div class="toast-body">
-                    Discount Code: Soda2019
-                </div>
+    <!--Homework for Class Two, create a Toast for a product and a discount total-->
+    <div>
+        <div class="toast" style="position: absolute; top: 100px ; right: 20%;">
+            <div class="toast-header">
+                <!--Create a button that closes the Toast when clicked-->
+                <button type="button" data-dismiss="toast">x</button>
+                <strong class="mr-auto"><i class="fas fa-tags"></i>Product: Soda</strong>
+            </div>
+            <div class="toast-body">
+                Discount Code: Soda2019
             </div>
         </div>
     </div>
+</div>
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -111,11 +111,11 @@
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input balloon-checkBox" id="pinkBalloon" />
-                        <label class="form-check-label"id="pinkBalloonLabel">Pink Balloons</label>
+                        <label class="form-check-label" id="pinkBalloonLabel">Pink Balloons</label>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input balloon-checkBox" id="yellowBalloon" />
-                        <label class="form-check-label"id="yellowBalloonLabel">Yellow Ballons</label>
+                        <label class="form-check-label" id="yellowBalloonLabel">Yellow Ballons</label>
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@
         </div>
     </div>
 
-    </div>
+</div>
 
 <!--Class Three, Have balloons for the Birthday Card-->
 <div class="col-md-6">
@@ -161,44 +161,41 @@
     </div>
 </div>
 
-@section Scripts {
-    <!--Script Link for the external js Page-->
-    <script src="~/js/client.js"></script>
     <script>
 
-        //Class One-for the audio file to play
-        $(function () {
 
-            var toastAudio = new Audio('/media/toast.wav');
-            toastAudio.currentTime = 0;
-            toastAudio.play();
 
-            //Class Two-->To close the Toast
-            $('.toast').toast({ autohide: false }).toast('show');
+        //Class Two-->To close the Toast
+        $('.toast').toast({ autohide: false }).toast('show');
 
-            $(document).on('keyup', function () {
-                if (e.key === 'Escape') {
-                    $('.toast').toast('hide');
-                }
-            });
-
-            //Class One-JS for the birthday datepicker
-            $('#birthday').datepicker();
-
-            //Class One-to drag a balloon around on the homescreen
-            $('#bgBallon').draggable();
+        $(document).on('keyup', function () {
+            if (e.key === 'Escape') {
+                $('.toast').toast('hide');
+            }
         });
 
-        //Class Three Homework
-        //array of different animations for the Happy Birthday
-        //lets of random numbers
-        //choose the random number
-        //animate the balloons depending the random number
+        //Class One-JS for the birthday datepicker
+        $('#birthday').datepicker();
 
-        //hoovering mouse over checkbox label should change the color of the h1 element
+        //Class One-to drag a balloon around on the homescreen
+        $('#bgBallon').draggable();
+            });
 
-        //
+            //Class Three Homework
+            //array of different animations for the Happy Birthday
+            //lets of random numbers
+            //choose the random number
+            //animate the balloons depending the random number
+
+            //hoovering mouse over checkbox label should change the color of the h1 element
+
+            //
     </script>
+}
+
+@section scripts
+    {
+    <script src="/js/client.js"></script>
 }
 
 <!--Hold down the ctrl+F5 to clear the cache-->
