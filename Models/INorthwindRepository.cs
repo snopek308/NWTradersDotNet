@@ -15,5 +15,6 @@ namespace Northwind.Models
         //
         void AddContact(Contact contact);
         void AddCustomer(Customer customers);
+        void EditCustomer(Customer customer);
     }
 }

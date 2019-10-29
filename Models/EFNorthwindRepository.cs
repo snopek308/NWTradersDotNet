@@ -2,35 +2,46 @@
 
 namespace Northwind.Models
 {
-    public class EFNorthwindRepository : INorthwindRepository
+    public class EfNorthwindRepository : INorthwindRepository
     {
         // the repository class depends on the NorthwindContext service
         // which was registered at application startup
-        private NorthwindContext context;
-        public EFNorthwindRepository(NorthwindContext ctx)
+        private readonly NorthwindContext _context;
+        public EfNorthwindRepository(NorthwindContext ctx)
         {
-            context = ctx;
+            _context = ctx;
         }
         // create IQueryable for Categories & Products
-        public IQueryable<Category> Categories => context.Categories;
-        public IQueryable<Product> Products => context.Products;
-        public IQueryable<Discount> Discounts => context.Discounts;
-        public IQueryable<Contact> Contact => context.Contact;
-        public IQueryable<Customer> Customers => context.Customers;
+        public IQueryable<Category> Categories => _context.Categories;
+        public IQueryable<Product> Products => _context.Products;
+        public IQueryable<Discount> Discounts => _context.Discounts;
+        public IQueryable<Contact> Contacts => _context.Contact;
+        public IQueryable<Customer> Customers => _context.Customers;
 
-        //adding the form to the database
+        public IQueryable<Contact> Contact => throw new System.NotImplementedException();
+
         public void AddContact(Contact contact)
         {
-            context.Contact.Add(contact);
-            context.SaveChanges();
+            _context.Contact.Add(contact);
+            _context.SaveChanges();
+        }
+        public void AddCustomer(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
 
-        public void AddCustomer(Customer customers)
+        public void EditCustomer(Customer customer)
         {
-            //the array and then the .Add adds objects to the arrayList
-            context.Customers.Add(customers);
-            //saves what you push to your database
-            context.SaveChanges();
+            var customerToUpdate = _context.Customers.FirstOrDefault(c => c.CustomerID == customer.CustomerID);
+            customerToUpdate.Address = customer.Address;
+            customerToUpdate.City = customer.City;
+            customerToUpdate.Region = customer.Region;
+            customerToUpdate.PostalCode = customer.PostalCode;
+            customerToUpdate.Country = customer.Country;
+            customerToUpdate.Phone = customer.Phone;
+            customerToUpdate.Fax = customer.Fax;
+            _context.SaveChanges();
         }
     }
 }
