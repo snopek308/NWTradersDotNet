@@ -2,12 +2,12 @@
 
 namespace Northwind.Models
 {
-    public class EfNorthwindRepository : INorthwindRepository
+    public class EFNorthwindRepository : INorthwindRepository
     {
         // the repository class depends on the NorthwindContext service
         // which was registered at application startup
         private readonly NorthwindContext _context;
-        public EfNorthwindRepository(NorthwindContext ctx)
+        public EFNorthwindRepository(NorthwindContext ctx)
         {
             _context = ctx;
         }

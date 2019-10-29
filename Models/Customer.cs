@@ -25,5 +25,6 @@ namespace Northwind.Models
 
         [PhoneAttribute]
         public string Fax { get; set; }
+        public string Email { get; set; }
     }
 }
