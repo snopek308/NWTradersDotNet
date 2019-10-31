@@ -11,16 +11,20 @@
     <!--Homework for Class Seven, Display Discounts-->
     <div class="row">
         @foreach (Discount d in Model)
-            {
-        <div class="col-md m-3 p-3 discounts">
-            <h3>@d.Title</h3>
-            <div class="mb-4">
-                @d.Description
+        {
+            <div class="col-md m-3 p-3 discounts">
+                <h3>@d.Title</h3>
+                <div class="mb-4">
+                    @d.Description
+                </div>
+                <i>Discount expires: @d.EndTime.ToString("MM/dd/yyyy")</i><br />
+                <a href="#" class="code" data-code="@d.Code" data-product="@d.Title"><i class="far fa-hand-point-right"></i> Discount Code</a>
             </div>
-            <i>Discount expires: @d.EndTime.ToString("MM/dd/yyyy")</i><br />
-            <a href="#" class="code" data-code="@d.Code" data-product="@d.Title"><i class="far fa-hand-point-right"></i> Discount Code</a>
-        </div>
-            }
+        }
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        {
+            <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
+        }
     </div>
 
 

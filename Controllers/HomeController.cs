@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
 
@@ -7,22 +9,39 @@ namespace Northwind.Controllers
 {
     public class HomeController : Controller
     {
-        //add this in, use the first suggestion to add in INorthWindRepository
-        private INorthwindRepository apple;
+        private readonly INorthwindRepository _repository;
 
-        //constructor, creating a new product controller and when they do, we make a new repository
-        public HomeController(INorthwindRepository repository)
+        public HomeController(INorthwindRepository repo)
         {
-            apple = repository;
+            _repository = repo;
         }
+
         public ActionResult Index()
         {
-            //Add the System.Linq when the .Where reds out &.Take
-            var results = apple.Discounts
-            .Where(d => d.StartTime <= DateTime.Now && d.EndTime > DateTime.Now)
-            .Take(3);
+            var results = _repository.Discounts
+                .Where(d => d.StartTime <= DateTime.Now
+                            && d.EndTime > DateTime.Now)
+                .Take(3);
+
             return View(results);
         }
 
+        [Authorize(Roles = "Users")]
+        public IActionResult OtherAction()
+        {
+            return View("Index", GetData(nameof(OtherAction)));
+        }
+
+        private Dictionary<string, object> GetData(string actionName)
+        {
+            return new Dictionary<string, object>
+            {
+                ["Action"] = actionName,
+                ["User"] = HttpContext.User.Identity.Name,
+                ["Authenticated"] = HttpContext.User.Identity.IsAuthenticated,
+                ["Auth Type"] = HttpContext.User.Identity.AuthenticationType,
+                ["In Users Role"] = HttpContext.User.IsInRole("Users")
+            };
+        }
     }
 }

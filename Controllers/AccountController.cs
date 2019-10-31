@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Northwind.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
@@ -21,6 +18,7 @@ namespace Northwind.Controllers
             _signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
@@ -28,27 +26,31 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel login, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                AppUser user = await _userManager.FindByEmailAsync(login.Email);
+                var user = await _userManager.FindByEmailAsync(login.Email);
                 if (user != null)
                 {
                     await _signInManager.SignOutAsync();
 
-                    SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, false, false);
-                    if (result.Succeeded)
-                    {
-                        return Redirect(returnUrl ?? "/");
-                    }
+                    var result = await _signInManager.PasswordSignInAsync(user, login.Password, false, false);
+                    if (result.Succeeded) return Redirect(returnUrl ?? "/");
                     ModelState.AddModelError("", "Invalid user or password");
                 }
             }
+
             return View(login);
         }
 
-        public ViewResult AccessDenied() => View();
+        [AllowAnonymous]
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Logout()
         {
