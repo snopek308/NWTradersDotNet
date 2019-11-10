@@ -34,6 +34,7 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Users")]
         public async Task<IActionResult> Create(CreateModel model)
         {
             if (ModelState.IsValid)
@@ -54,6 +55,7 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Moderator")]
         public async Task<IActionResult> Delete(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
