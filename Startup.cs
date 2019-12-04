@@ -43,6 +43,12 @@ namespace Northwind
             // is requested, a new instance of EFNorthwindRepository is returned
             services.AddTransient<INorthwindRepository, EFNorthwindRepository>();
             services.AddMvc();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
+                { Title = "My API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +63,12 @@ namespace Northwind
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+                });
         }
     }
 }
